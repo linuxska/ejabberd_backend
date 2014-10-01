@@ -1,0 +1,50 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  archive_collections:
+    _attributes: { phpName: ArchiveCollections }
+    id: { phpName: Id, type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    prev_id: { phpName: PrevId, type: INTEGER, size: '11', required: false }
+    next_id: { phpName: NextId, type: INTEGER, size: '11', required: false }
+    us: { phpName: Us, type: VARCHAR, size: '2047', required: true }
+    with_user: { phpName: WithUser, type: VARCHAR, size: '1023', required: true }
+    with_server: { phpName: WithServer, type: VARCHAR, size: '1023', required: true }
+    with_resource: { phpName: WithResource, type: VARCHAR, size: '1023', required: true }
+    utc: { phpName: Utc, type: TIMESTAMP, required: true }
+    change_by: { phpName: ChangeBy, type: VARCHAR, size: '3071', required: false }
+    change_utc: { phpName: ChangeUtc, type: TIMESTAMP, required: false }
+    deleted: { phpName: Deleted, type: TINYINT, size: '4', required: false }
+    subject: { phpName: Subject, type: VARCHAR, size: '1023', required: false }
+    thread: { phpName: Thread, type: VARCHAR, size: '1023', required: false }
+    crypt: { phpName: Crypt, type: TINYINT, size: '4', required: false }
+    extra: { phpName: Extra, type: LONGVARCHAR, required: false }
+    _indexes: { IDX_archive_colls_with: [us, with_user, with_server, utc], IDX_archive_colls_prev_id: [prev_id], IDX_archive_colls_next_id: [next_id], IDX_archive_colls_utc: [us, utc], IDX_archive_colls_change: [deleted, change_utc] }
+  archive_global_prefs:
+    _attributes: { phpName: ArchiveGlobalPrefs }
+    us: { phpName: Us, type: VARCHAR, size: '2047', primaryKey: true, required: true }
+    save: { phpName: Save, type: TINYINT, size: '4', required: false }
+    expire: { phpName: Expire, type: INTEGER, size: '11', required: false }
+    otr: { phpName: Otr, type: TINYINT, size: '4', required: false }
+    method_auto: { phpName: MethodAuto, type: TINYINT, size: '4', required: false }
+    method_local: { phpName: MethodLocal, type: TINYINT, size: '4', required: false }
+    method_manual: { phpName: MethodManual, type: TINYINT, size: '4', required: false }
+    auto_save: { phpName: AutoSave, type: TINYINT, size: '4', required: false }
+  archive_jid_prefs:
+    _attributes: { phpName: ArchiveJidPrefs }
+    us: { phpName: Us, type: VARCHAR, size: '2047', primaryKey: true, required: true }
+    with_user: { phpName: WithUser, type: VARCHAR, size: '1023', primaryKey: true, required: true }
+    with_server: { phpName: WithServer, type: VARCHAR, size: '1023', primaryKey: true, required: true }
+    with_resource: { phpName: WithResource, type: VARCHAR, size: '1023', primaryKey: true, required: true }
+    save: { phpName: Save, type: TINYINT, size: '4', required: false }
+    expire: { phpName: Expire, type: INTEGER, size: '11', required: false }
+    otr: { phpName: Otr, type: TINYINT, size: '4', required: false }
+  archive_messages:
+    _attributes: { phpName: ArchiveMessages }
+    id: { phpName: Id, type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    coll_id: { phpName: CollId, type: INTEGER, size: '11', required: true }
+    utc: { phpName: Utc, type: TIMESTAMP, required: true }
+    dir: { phpName: Dir, type: TINYINT, size: '4', required: false }
+    body: { phpName: Body, type: LONGVARCHAR, required: false }
+    name: { phpName: Name, type: VARCHAR, size: '1023', required: false }
+    _indexes: { IDX_archive_msgs_coll_id: [coll_id, utc] }

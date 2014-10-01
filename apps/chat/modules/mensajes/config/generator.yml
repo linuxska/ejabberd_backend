@@ -1,0 +1,33 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           ArchiveMessages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ArchiveMessages
+    plural:                ArchiveMessagess
+    route_prefix:          archive_messages
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: "Numero" }
+        coll_id: { label: "Cuenta" }
+        utc: { label: "Fecha" }
+        dir: { label: "Direccion"}
+        body: { label: "Mensaje" }
+      list:
+        title: Historial de mensajes
+        display: [coll_id, dir , utc, body]
+        batch_actions: {}
+        actions: {}
+        object_actions: {}
+        max_per_page: 50      
+      filter:  
+        display: [ utc, body]
+      form:    ~
+      edit:    {}
+      new:     {}
